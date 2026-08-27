@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentinel AI | 5-Minute Enterprise Video Pitch</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Sentinel AI for Razorpay | 5-Minute Enterprise Video Pitch (Created by AMIT KUSHWAHA)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --bg-dark: #050811;
+            --razorpay-blue: #0c2340;
+            --razorpay-cyan: #0284c7;
             --primary-cyan: #00f2fe;
-            --primary-blue: #4facfe;
+            --primary-blue: #3b82f6;
             --accent-emerald: #10b981;
             --accent-rose: #ef4444;
             --accent-amber: #f59e0b;
@@ -28,47 +30,134 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow-x: hidden;
+            padding: 20px;
         }
 
         .grid-bg {
             position: fixed;
             inset: 0;
             background-image: 
-                linear-gradient(rgba(0, 242, 254, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(0, 242, 254, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 254, 0.04) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: -1;
         }
 
+        /* Top Action Bar */
+        .pitch-nav {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .brand-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-badge .logo-tag {
+            background: linear-gradient(135deg, #0284c7, #00f2fe);
+            color: #050811;
+            font-weight: 900;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .brand-badge span {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary-cyan);
+            color: var(--primary-cyan);
+        }
+
+        .btn-action.highlight {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-color: #10b981;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-action.highlight:hover {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.7);
+            transform: translateY(-1px);
+        }
+
         /* Video Stage Frame */
+        .video-stage-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+        }
+
         .video-stage {
-            width: 92vw;
-            max-width: 1020px;
+            width: 100%;
             aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, #0b1329, #050811);
-            border: 2px solid rgba(0, 242, 254, 0.35);
+            background: linear-gradient(135deg, #091326, #040711);
+            border: 2px solid rgba(0, 242, 254, 0.4);
             border-radius: 20px;
-            box-shadow: 0 0 60px rgba(0, 242, 254, 0.25);
+            box-shadow: 0 0 80px rgba(0, 242, 254, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.6);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
+        /* Hidden Canvas for Video Recording */
+        #recording-canvas {
+            display: none;
+        }
+
+        /* Slide Layers */
         .slide {
             position: absolute;
             inset: 0;
-            bottom: 120px; /* Leave space for Teleprompter & Controls */
+            bottom: 130px; /* Space for teleprompter & controls */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px 40px;
+            padding: 30px 50px;
             text-align: center;
             opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: scale(0.96);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
         }
 
@@ -81,175 +170,128 @@
         .tag-pill {
             font-size: 0.75rem;
             font-weight: 800;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             padding: 6px 18px;
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            margin-bottom: 14px;
-            display: inline-block;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .text-red { color: var(--accent-rose); }
         .text-cyan { color: var(--primary-cyan); }
         .text-green { color: var(--accent-emerald); }
         .text-amber { color: var(--accent-amber); }
+        .text-purple { color: var(--accent-purple); }
+        .text-razorpay { color: #38bdf8; font-weight: 800; }
 
         .slide-title {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: 900;
-            line-height: 1.15;
-            margin-bottom: 12px;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
         }
 
         .slide-desc {
             font-size: 1.05rem;
             color: #94a3b8;
-            max-width: 720px;
-            line-height: 1.5;
+            max-width: 780px;
+            line-height: 1.55;
+            margin: 0 auto;
         }
 
-        /* Pulse Logo */
+        /* Hero Shield Pulse */
         .shield-pulse {
             width: 80px;
             height: 80px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, var(--primary-cyan), var(--accent-purple));
+            border-radius: 22px;
+            background: linear-gradient(135deg, #0284c7, #00f2fe);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.2rem;
             color: #fff;
-            margin-bottom: 16px;
-            box-shadow: 0 0 35px rgba(0, 242, 254, 0.6);
-            animation: pulse 2s infinite ease-in-out;
+            margin-bottom: 14px;
+            box-shadow: 0 0 45px rgba(0, 242, 254, 0.7);
+            animation: pulse 2.2s infinite ease-in-out;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(0, 242, 254, 0.5); }
-            50% { transform: scale(1.08); box-shadow: 0 0 60px rgba(0, 242, 254, 0.8); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 35px rgba(0, 242, 254, 0.5); }
+            50% { transform: scale(1.08); box-shadow: 0 0 70px rgba(0, 242, 254, 0.9); }
         }
 
+        /* 3-Column Feature Cards */
         .feature-grid-3col {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             margin-top: 18px;
             width: 100%;
+            max-width: 880px;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            padding: 16px;
+            padding: 16px 14px;
             text-align: left;
+            transition: all 0.3s ease;
         }
 
-        .feature-card i { width: 24px; height: 24px; color: var(--primary-cyan); margin-bottom: 8px; }
-        .feature-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-        .feature-card p { font-size: 0.78rem; color: #94a3b8; }
+        .feature-card:hover {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 242, 254, 0.08);
+            transform: translateY(-2px);
+        }
 
-        /* Teleprompter Subtitle Box */
-        .teleprompter-box {
-            position: absolute;
-            bottom: 60px;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: rgba(8, 12, 20, 0.95);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            padding: 0 24px;
+        .feature-card i { width: 22px; height: 22px; color: var(--primary-cyan); margin-bottom: 8px; }
+        .feature-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 4px; color: #f8fafc; }
+        .feature-card p { font-size: 0.76rem; color: #94a3b8; line-height: 1.4; }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 14px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 850px;
         }
 
-        .speaker-badge {
-            background: rgba(0, 242, 254, 0.15);
+        .stat-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 14px 10px;
+        }
+
+        .stat-num {
+            font-size: 1.6rem;
+            font-weight: 900;
             color: var(--primary-cyan);
-            border: 1px solid var(--primary-cyan);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            white-space: nowrap;
-        }
-
-        .caption-text {
-            font-size: 0.9rem;
-            color: #f1f5f9;
-            line-height: 1.3;
-            font-weight: 500;
-        }
-
-        /* Controls Bar */
-        .controls-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: #050811;
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            z-index: 10;
-        }
-
-        .control-btns {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-ctrl {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .play-btn {
-            background: var(--primary-cyan);
-            color: #050811;
-            font-weight: 800;
-        }
-
-        .timeline-bar {
-            flex: 1;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            margin: 0 16px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .timeline-progress {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--primary-cyan), var(--accent-emerald));
-            transition: width 0.1s linear;
-        }
-
-        .time-display {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #94a3b8;
+            display: block;
         }
 
+        .stat-label {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Top Watermark in Stage */
         .video-top-bar {
             position: absolute;
-            top: 16px;
+            top: 14px;
             left: 24px;
             right: 24px;
             display: flex;
@@ -261,21 +303,211 @@
         .watermark {
             font-size: 0.75rem;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            color: var(--primary-cyan);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rec-indicator {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--accent-rose);
+            color: var(--accent-rose);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            animation: blink 1.5s infinite;
+        }
+
+        .rec-indicator.active {
+            display: inline-flex;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Teleprompter Subtitle Box */
+        .teleprompter-box {
+            position: absolute;
+            bottom: 64px;
+            left: 0;
+            right: 0;
+            height: 66px;
+            background: rgba(6, 10, 20, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            gap: 16px;
+            backdrop-filter: blur(8px);
+        }
+
+        .speaker-badge {
+            background: rgba(2, 132, 199, 0.25);
+            color: #38bdf8;
+            border: 1px solid #0284c7;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .caption-text {
+            font-size: 0.92rem;
+            color: #f1f5f9;
+            line-height: 1.35;
+            font-weight: 500;
+            flex: 1;
+            text-align: left;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Voice Wave Visualizer */
+        .voice-visualizer {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 18px;
+        }
+
+        .wave-bar {
+            width: 3px;
+            height: 4px;
+            background: var(--primary-cyan);
+            border-radius: 2px;
+            transition: height 0.1s ease;
+        }
+
+        .speaking .wave-bar {
+            animation: waveBounce 0.6s infinite ease-in-out alternate;
+        }
+
+        .speaking .wave-bar:nth-child(1) { animation-delay: 0.1s; }
+        .speaking .wave-bar:nth-child(2) { animation-delay: 0.3s; }
+        .speaking .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+        .speaking .wave-bar:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes waveBounce {
+            0% { height: 4px; }
+            100% { height: 18px; }
+        }
+
+        /* Controls Bar */
+        .controls-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: #040711;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 10;
+        }
+
+        .control-btns {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-ctrl {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-ctrl:hover {
+            background: rgba(255, 255, 255, 0.2);
             color: var(--primary-cyan);
         }
 
-        .btn-back {
+        .play-btn {
+            background: linear-gradient(135deg, #0284c7, #00f2fe);
+            color: #050811;
+            font-weight: 800;
+        }
+
+        .play-btn:hover {
+            background: linear-gradient(135deg, #00f2fe, #38bdf8);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+            color: #000;
+        }
+
+        .timeline-bar {
+            flex: 1;
+            height: 6px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            display: inline-flex;
+            border-radius: 3px;
+            margin: 0 16px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .timeline-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #0284c7, var(--primary-cyan), var(--accent-emerald));
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            white-space: nowrap;
+        }
+
+        .voice-toggle-box {
+            display: flex;
             align-items: center;
             gap: 6px;
+            margin-left: 12px;
+        }
+
+        /* Download Status Modal / Toast */
+        .status-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            border: 1px solid var(--primary-cyan);
+            padding: 12px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            font-size: 0.88rem;
+        }
+
+        .status-toast.show {
+            display: flex;
         }
     </style>
 </head>
@@ -283,132 +515,280 @@
 
     <div class="grid-bg"></div>
 
-    <div class="video-stage">
-        <!-- Top Overlay Header -->
-        <div class="video-top-bar">
-            <span class="watermark">SENTINEL AI &bull; 5-MINUTE ENTERPRISE PITCH (CREATED BY AMIT KUSHWAHA)</span>
-            <a href="index.html" class="btn-back"><i data-lucide="arrow-left"></i> Launch Sentinel AI App</a>
+    <!-- Top Action Navigation -->
+    <div class="pitch-nav">
+        <div class="brand-badge">
+            <span class="logo-tag">RAZORPAY FINTECH AI</span>
+            <span>SENTINEL AI RISK MANAGER &bull; CREATED BY AMIT KUSHWAHA</span>
         </div>
 
-        <!-- MINUTE 1 (0s - 60s): THE HOOK & THE PROBLEM -->
-        <div class="slide active" id="slide-0">
-            <span class="tag-pill text-red">⚠️ MINUTE 1/5: THE AI RISK CRISIS</span>
-            <h1 class="slide-title">AI Adoption is Exploding...<br><span class="text-red">So Are Prompt Injections & Data Breaches</span></h1>
-            <p class="slide-desc">Enterprises are scaling Generative AI models rapidly, but uncontrolled LLM deployments face major threats: prompt jailbreaks, sensitive PII leaks, and massive regulatory fines under the EU AI Act.</p>
-        </div>
+        <div class="nav-actions">
+            <!-- Download Pitch Video Button -->
+            <button class="btn-action highlight" id="btn-download-video" onclick="startVideoRecordingDownload()">
+                <i data-lucide="video"></i>
+                <span id="record-btn-text">🔴 Record & Download Video Pitch (with Voice)</span>
+            </button>
 
-        <!-- MINUTE 2 (60s - 120s): INTRODUCING SENTINEL AI -->
-        <div class="slide" id="slide-1">
-            <div class="shield-pulse">
-                <i data-lucide="shield-check"></i>
-            </div>
-            <span class="tag-pill text-cyan">MINUTE 2/5: THE SOLUTION</span>
-            <h1 class="slide-title">Introducing <span class="text-cyan">SENTINEL AI</span></h1>
-            <p class="slide-desc">Engineered & Created by <strong>AMIT KUSHWAHA</strong>. An active real-time AI guardrail, safety sentinel, and compliance auditor that protects enterprise models without slowing down performance.</p>
-        </div>
+            <!-- Download Audio Voiceover Button -->
+            <button class="btn-action" onclick="downloadVoiceAudioPitch()">
+                <i data-lucide="mic"></i> Download Voice Script (Audio/Text)
+            </button>
 
-        <!-- MINUTE 3 (120s - 180s): CORE TECHNICAL FEATURES -->
-        <div class="slide" id="slide-2">
-            <span class="tag-pill text-green">MINUTE 3/5: PRODUCT DEMONSTRATION</span>
-            <h1 class="slide-title">3 Core Security Engines</h1>
-            <div class="feature-grid-3col">
-                <div class="feature-card">
-                    <i data-lucide="terminal"></i>
-                    <h4>1. Prompt Injection Trapper</h4>
-                    <p>Blocks DAN mode, system prompt leaks, and redacts Credit Cards & SSNs in real time.</p>
-                </div>
-                <div class="feature-card">
-                    <i data-lucide="award"></i>
-                    <h4>2. Model Audit Suite</h4>
-                    <p>Issues official EU AI Act & NIST RMF compliance certificates with verified digital stamps.</p>
-                </div>
-                <div class="feature-card">
-                    <i data-lucide="zap"></i>
-                    <h4>3. Attack Simulator</h4>
-                    <p>Live stress testing for RAG vector poisoning and model inversion queries.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- MINUTE 4 (180s - 240s): ENTERPRISE ROI & VALUE -->
-        <div class="slide" id="slide-3">
-            <span class="tag-pill text-amber">MINUTE 4/5: ENTERPRISE ROI & VALUE</span>
-            <h1 class="slide-title">Zero-Latency AI Security</h1>
-            <p class="slide-desc">14 parallel heuristic safety filters evaluate every prompt payload in under <strong>0.5 milliseconds</strong>, guaranteeing 256-bit encryption, zero data retention, and instant audit compliance.</p>
-        </div>
-
-        <!-- MINUTE 5 (240s - 300s): CALL TO ACTION -->
-        <div class="slide" id="slide-4">
-            <span class="tag-pill text-cyan">MINUTE 5/5: CONCLUSION</span>
-            <h1 class="slide-title">Deploy AI with <span class="text-green">Total Confidence</span></h1>
-            <p class="slide-desc" style="margin-bottom: 20px;">Created by AMIT KUSHWAHA. Protect your enterprise LLMs today.</p>
-            <a href="index.html" class="btn-back" style="background: var(--primary-cyan); color: #050811; font-weight: 800; padding: 12px 28px; font-size: 1rem;">
-                Launch Live Sentinel AI Application &rarr;
+            <!-- Back to App -->
+            <a href="index.html" class="btn-action">
+                <i data-lucide="layout-dashboard"></i> Launch Sentinel App
             </a>
         </div>
+    </div>
 
-        <!-- Subtitle Teleprompter Caption Box -->
-        <div class="teleprompter-box">
-            <span class="speaker-badge">SPEAKER: AMIT KUSHWAHA</span>
-            <span class="caption-text" id="caption-box">"AI is scaling fast, but security risks are exploding. Let's look at how Sentinel AI protects your enterprise..."</span>
-        </div>
+    <!-- Main 16:9 Video Pitch Stage Frame -->
+    <div class="video-stage-container">
+        <div class="video-stage" id="pitch-stage">
+            <!-- Hidden Canvas for Video Generation/Recording -->
+            <canvas id="recording-canvas" width="1280" height="720"></canvas>
 
-        <!-- Video Controls Bar -->
-        <div class="controls-bar">
-            <div class="control-btns">
-                <button class="btn-ctrl" onclick="skipScene(-1)"><i data-lucide="skip-back"></i></button>
-                <button class="btn-ctrl play-btn" id="play-pause-btn" onclick="togglePlay()"><i data-lucide="pause"></i></button>
-                <button class="btn-ctrl" onclick="skipScene(1)"><i data-lucide="skip-forward"></i></button>
+            <!-- Top Overlay Header -->
+            <div class="video-top-bar">
+                <span class="watermark">
+                    <i data-lucide="shield-check"></i> SENTINEL AI &bull; RAZORPAY AI RISK SENTINEL (BY AMIT KUSHWAHA)
+                </span>
+                <span class="rec-indicator" id="rec-badge">
+                    <i data-lucide="circle-dot"></i> REC LIVE EXPORTING
+                </span>
             </div>
 
-            <div class="timeline-bar" onclick="seekTimeline(event)">
-                <div class="timeline-progress" id="progress-bar"></div>
+            <!-- SLIDE 1 (Minute 1: The Razorpay AI Challenge) -->
+            <div class="slide active" id="slide-0">
+                <span class="tag-pill text-red">⚠️ MINUTE 1/5: THE FINTECH AI RISK CHALLENGE</span>
+                <h1 class="slide-title">AI is Powering Razorpay Payments...<br><span class="text-red">Prompt Injections & Fraud Vectors Are Rising</span></h1>
+                <p class="slide-desc">
+                    As Razorpay scales autonomous LLM agents for merchant support, dispute resolution, and checkout intelligence, financial models face severe adversarial threats: prompt jailbreaks forcing unauthorized refunds, payment API key leaks, and RBI / PCI-DSS compliance penalties.
+                </p>
             </div>
 
-            <div class="time-display" id="time-text">00:00 / 05:00</div>
+            <!-- SLIDE 2 (Minute 2: Solution - Sentinel AI for Razorpay) -->
+            <div class="slide" id="slide-1">
+                <div class="shield-pulse">
+                    <i data-lucide="shield-alert"></i>
+                </div>
+                <span class="tag-pill text-cyan">MINUTE 2/5: THE ARCHITECTURAL DEFENSE</span>
+                <h1 class="slide-title">Introducing <span class="text-razorpay">SENTINEL AI</span> for Razorpay</h1>
+                <p class="slide-desc">
+                    Architected & Engineered by <strong>AMIT KUSHWAHA</strong>. A zero-latency AI Risk & Governance Sentinel purpose-built for payment gateways, screening every LLM query for financial fraud, token leakage, and unauthorized payment commands.
+                </p>
+            </div>
+
+            <!-- SLIDE 3 (Minute 3: 3 Core Security Engines) -->
+            <div class="slide" id="slide-2">
+                <span class="tag-pill text-green">MINUTE 3/5: PRODUCT CAPABILITIES</span>
+                <h1 class="slide-title">3 Core Fintech AI Security Engines</h1>
+                <div class="feature-grid-3col">
+                    <div class="feature-card">
+                        <i data-lucide="terminal"></i>
+                        <h4>1. Refund & Payment Trapper</h4>
+                        <p>Prevents DAN jailbreaks from executing fake refund approvals and masks UPI VPAs, Cards & PAN in 0.4ms.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="award"></i>
+                        <h4>2. RBI & PCI-DSS Auditor</h4>
+                        <p>Generates verifiable digital compliance certificates conforming to RBI Digital Payment & PCI-DSS v4.0 standards.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="zap"></i>
+                        <h4>3. Webhook & Vector Simulator</h4>
+                        <p>Stress-tests Razorpay LLM webhooks, RAG credit data poisoning, and merchant underwriting models.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4 (Minute 4: Enterprise Performance & Fintech Metrics) -->
+            <div class="slide" id="slide-3">
+                <span class="tag-pill text-amber">MINUTE 4/5: SUB-MILLISECOND FINTECH VELOCITY</span>
+                <h1 class="slide-title">Zero Friction. 100% Payment Integrity.</h1>
+                <p class="slide-desc">
+                    Evaluates prompt payloads at fintech-grade speed, ensuring Razorpay checkout sessions remain ultra-fast while eliminating LLM hallucination and payment fraud.
+                </p>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-num">96.4%</span>
+                        <span class="stat-label">Safety Index</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">&lt;0.5ms</span>
+                        <span class="stat-label">Filter Latency</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">PCI-DSS Ready</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">0</span>
+                        <span class="stat-label">Data Retention</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 5 (Minute 5: Summary & Call to Action) -->
+            <div class="slide" id="slide-4">
+                <span class="tag-pill text-cyan">MINUTE 5/5: CONCLUSION & IMPACT</span>
+                <h1 class="slide-title">Empowering Razorpay to Scale AI Safely</h1>
+                <p class="slide-desc" style="margin-bottom: 20px;">
+                    Created & Maintained by <strong>AMIT KUSHWAHA</strong> &bull; Chief AI Risk Officer. Ready for production deployment across Razorpay Payment Gateway, RazorpayX, and Thirdwatch AI.
+                </p>
+                <a href="index.html" class="btn-action highlight" style="font-size: 1rem; padding: 12px 28px;">
+                    <i data-lucide="shield-check"></i> Launch Live Sentinel AI Application &rarr;
+                </a>
+            </div>
+
+            <!-- Subtitle Teleprompter Caption Box -->
+            <div class="teleprompter-box">
+                <div class="speaker-badge">
+                    <i data-lucide="mic"></i> SPEAKER: AMIT KUSHWAHA
+                </div>
+                <span class="caption-text" id="caption-box">"AI is transforming payments at Razorpay, but prompt injections and fraud risks are surging..."</span>
+                
+                <!-- Voice Wave Indicator -->
+                <div class="voice-visualizer speaking" id="voice-waves">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </div>
+
+            <!-- Video Controls Bar -->
+            <div class="controls-bar">
+                <div class="control-btns">
+                    <button class="btn-ctrl" onclick="skipScene(-1)" title="Previous Minute"><i data-lucide="skip-back"></i></button>
+                    <button class="btn-ctrl play-btn" id="play-pause-btn" onclick="togglePlay()" title="Play / Pause"><i data-lucide="pause"></i></button>
+                    <button class="btn-ctrl" onclick="skipScene(1)" title="Next Minute"><i data-lucide="skip-forward"></i></button>
+                </div>
+
+                <div class="timeline-bar" onclick="seekTimeline(event)">
+                    <div class="timeline-progress" id="progress-bar"></div>
+                </div>
+
+                <div class="time-display" id="time-text">00:00 / 05:00</div>
+
+                <!-- Voice Toggle -->
+                <div class="voice-toggle-box">
+                    <button class="btn-action" id="btn-voice-toggle" onclick="toggleVoiceAudio()" style="padding: 6px 12px; font-size: 0.75rem;">
+                        <i data-lucide="volume-2"></i> Voice: ON
+                    </button>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- Status Toast for Downloads -->
+    <div class="status-toast" id="toast-notify">
+        <i data-lucide="check-circle-2" style="color: var(--accent-emerald);"></i>
+        <span id="toast-text">Video generation completed!</span>
     </div>
 
     <script>
         let isPlaying = true;
+        let voiceEnabled = true;
         let currentTime = 0;
         const totalDuration = 300; // Exactly 5 minutes (300 seconds)
         let timer = null;
+        let currentVoice = null;
+        let isSpeaking = false;
+        let lastSpokenIndex = -1;
 
+        // 5-Minute Razorpay Pitch Script (Created by AMIT KUSHWAHA)
         const transcriptCaptions = [
             // Minute 1 (0s - 60s)
-            { time: 0, text: '"Artificial Intelligence is transforming enterprise software... but security risks are exploding."' },
-            { time: 15, text: '"Hackers use Prompt Injections, Jailbreak tricks, and PII extractions to bypass AI rules."' },
-            { time: 35, text: '"Under laws like the EU AI Act, unmonitored AI breaches can cost companies millions in regulatory fines."' },
+            { 
+                time: 0, 
+                slideIndex: 0,
+                text: "Artificial Intelligence is transforming enterprise fintech and Razorpay's payment infrastructure... but safety risks are exploding." 
+            },
+            { 
+                time: 15, 
+                slideIndex: 0,
+                text: "Adversaries use prompt injections, DAN mode jailbreaks, and PII extraction tricks to bypass AI guardrails." 
+            },
+            { 
+                time: 35, 
+                slideIndex: 0,
+                text: "Without dedicated safeguards, payment bots can be tricked into unauthorized refunds or leaking merchant API keys, causing massive RBI and PCI-DSS compliance fines." 
+            },
 
             // Minute 2 (60s - 120s)
-            { time: 60, text: '"I am AMIT KUSHWAHA, and I created Sentinel AI—an active real-time AI guardrail & risk sentinel."' },
-            { time: 90, text: '"Sentinel AI sits between your users and your LLM models, giving you a 96.4/100 safety score index."' },
+            { 
+                time: 60, 
+                slideIndex: 1,
+                text: "I am AMIT KUSHWAHA, and I engineered Sentinel AI—a dedicated enterprise AI Risk and Governance Sentinel for Razorpay." 
+            },
+            { 
+                time: 90, 
+                slideIndex: 1,
+                text: "Sentinel AI sits directly between customer queries and your payment LLMs, delivering an automated 96.4 out of 100 safety score." 
+            },
 
             // Minute 3 (120s - 180s)
-            { time: 120, text: '"Let us look at our 3 core security engines: Prompt Vulnerability Trapper, Model Audit Suite, and Attack Simulator."' },
-            { time: 150, text: '"Our Prompt Trapper automatically redacts credit cards and blocks DAN mode jailbreaks in sub-milliseconds."' },
+            { 
+                time: 120, 
+                slideIndex: 2,
+                text: "Our architecture features 3 core security engines: the Refund and Payment Trapper, Model Audit Suite, and Attack Simulator." 
+            },
+            { 
+                time: 150, 
+                slideIndex: 2,
+                text: "The prompt trapper automatically masks UPI VPAs, Credit Cards, and PAN numbers in under 0.5 milliseconds before reaching the LLM." 
+            },
 
             // Minute 4 (180s - 240s)
-            { time: 180, text: '"Sentinel AI delivers sub-millisecond execution, ensuring zero slowdown for your users while preserving 100% privacy."' },
-            { time: 210, text: '"Compliance teams can generate official printable EU AI Act & NIST RMF audit certificates in one click."' },
+            { 
+                time: 180, 
+                slideIndex: 3,
+                text: "Sentinel AI delivers sub-millisecond execution, ensuring zero slowdown during peak Razorpay checkout traffic." 
+            },
+            { 
+                time: 210, 
+                slideIndex: 3,
+                text: "Compliance teams can generate official printable RBI Master Directions and PCI-DSS compliance certificates in one click." 
+            },
 
             // Minute 5 (240s - 300s)
-            { time: 240, text: '"AI is moving fast, but safety cannot be an afterthought. Protect your AI models with Sentinel AI."' },
-            { time: 275, text: '"I am AMIT KUSHWAHA. Experience Sentinel AI live right now in your workspace. Thank you!"' }
+            { 
+                time: 240, 
+                slideIndex: 4,
+                text: "Fintech AI must be fast, reliable, and impenetrable. Sentinel AI gives Razorpay the confidence to deploy AI safely." 
+            },
+            { 
+                time: 270, 
+                slideIndex: 4,
+                text: "I am AMIT KUSHWAHA. Experience Sentinel AI live right now in your workspace. Thank you!" 
+            }
         ];
+
+        // Initialize Speech Synthesis
+        function initSpeechEngine() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.onvoiceschanged = () => {
+                    const voices = window.speechSynthesis.getVoices();
+                    // Prefer English natural voices
+                    currentVoice = voices.find(v => (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('English')) && v.lang.startsWith('en')) || voices[0];
+                };
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             if (window.lucide) lucide.createIcons();
+            initSpeechEngine();
             startVideo();
         });
 
         function startVideo() {
+            if (timer) clearInterval(timer);
             timer = setInterval(() => {
                 if (isPlaying) {
                     currentTime += 0.5;
                     if (currentTime > totalDuration) {
                         currentTime = 0;
+                        lastSpokenIndex = -1;
                     }
                     updateVideoState();
                 }
@@ -420,11 +800,35 @@
             const btn = document.getElementById('play-pause-btn');
             btn.innerHTML = isPlaying ? '<i data-lucide="pause"></i>' : '<i data-lucide="play"></i>';
             if (window.lucide) lucide.createIcons();
+
+            if (!isPlaying && 'speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            } else if (isPlaying) {
+                // Trigger speech for current section
+                speakCurrentCaption();
+            }
+        }
+
+        function toggleVoiceAudio() {
+            voiceEnabled = !voiceEnabled;
+            const btn = document.getElementById('btn-voice-toggle');
+            btn.innerHTML = voiceEnabled ? '<i data-lucide="volume-2"></i> Voice: ON' : '<i data-lucide="volume-x"></i> Voice: OFF';
+            if (window.lucide) lucide.createIcons();
+
+            if (!voiceEnabled && 'speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                document.getElementById('voice-waves').classList.remove('speaking');
+            } else {
+                speakCurrentCaption();
+            }
         }
 
         function skipScene(direction) {
             currentTime = Math.max(0, Math.min(totalDuration, currentTime + (direction * 60)));
+            lastSpokenIndex = -1;
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
             updateVideoState();
+            if (isPlaying) speakCurrentCaption();
         }
 
         function seekTimeline(event) {
@@ -433,7 +837,51 @@
             const clickX = event.clientX - rect.left;
             const percent = clickX / rect.width;
             currentTime = percent * totalDuration;
+            lastSpokenIndex = -1;
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
             updateVideoState();
+            if (isPlaying) speakCurrentCaption();
+        }
+
+        function speakText(text) {
+            if (!voiceEnabled || !('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            if (currentVoice) utterance.voice = currentVoice;
+            utterance.rate = 1.02;
+            utterance.pitch = 1.0;
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('voice-waves').classList.add('speaking');
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('voice-waves').classList.remove('speaking');
+            };
+
+            utterance.onerror = () => {
+                isSpeaking = false;
+                document.getElementById('voice-waves').classList.remove('speaking');
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function speakCurrentCaption() {
+            let activeIdx = -1;
+            for (let i = transcriptCaptions.length - 1; i >= 0; i--) {
+                if (currentTime >= transcriptCaptions[i].time) {
+                    activeIdx = i;
+                    break;
+                }
+            }
+            if (activeIdx !== -1 && activeIdx !== lastSpokenIndex) {
+                lastSpokenIndex = activeIdx;
+                speakText(transcriptCaptions[activeIdx].text);
+            }
         }
 
         function updateVideoState() {
@@ -448,29 +896,168 @@
             const secStr = sec < 10 ? '0' + sec : sec;
             document.getElementById('time-text').textContent = `${minStr}:${secStr} / 05:00`;
 
-            // Update Slide Views
+            // Active slide mapping
             const slides = document.querySelectorAll('.slide');
             slides.forEach(s => s.classList.remove('active'));
 
-            if (currentTime < 60) {
-                document.getElementById('slide-0').classList.add('active');
-            } else if (currentTime < 120) {
-                document.getElementById('slide-1').classList.add('active');
-            } else if (currentTime < 180) {
-                document.getElementById('slide-2').classList.add('active');
-            } else if (currentTime < 240) {
-                document.getElementById('slide-3').classList.add('active');
-            } else {
-                document.getElementById('slide-4').classList.add('active');
-            }
+            let currentSlide = 0;
+            if (currentTime < 60) currentSlide = 0;
+            else if (currentTime < 120) currentSlide = 1;
+            else if (currentTime < 180) currentSlide = 2;
+            else if (currentTime < 240) currentSlide = 3;
+            else currentSlide = 4;
 
-            // Update Teleprompter Caption Text
+            const targetSlide = document.getElementById(`slide-${currentSlide}`);
+            if (targetSlide) targetSlide.classList.add('active');
+
+            // Update Teleprompter Caption Text & trigger speech
             for (let i = transcriptCaptions.length - 1; i >= 0; i--) {
                 if (currentTime >= transcriptCaptions[i].time) {
                     document.getElementById('caption-box').textContent = transcriptCaptions[i].text;
+                    if (i !== lastSpokenIndex && isPlaying) {
+                        lastSpokenIndex = i;
+                        speakText(transcriptCaptions[i].text);
+                    }
                     break;
                 }
             }
+        }
+
+        // ==================== VIDEO & AUDIO EXPORT / DOWNLOAD ENGINE ====================
+
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let isRecording = false;
+
+        // 1-Click Video Recording & Download
+        async function startVideoRecordingDownload() {
+            const btn = document.getElementById('btn-download-video');
+            const recBadge = document.getElementById('rec-badge');
+            const btnText = document.getElementById('record-btn-text');
+
+            if (isRecording) {
+                // Stop Recording
+                if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
+                return;
+            }
+
+            try {
+                // Check if screen capture or tab capture is supported
+                showToastNotification("Select 'Current Tab' to record high-def video with audio narration!");
+
+                const stream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { frameRate: 30, width: 1280, height: 720 },
+                    audio: true
+                });
+
+                recBadge.classList.add('active');
+                btnText.textContent = "⏹️ Stop & Save Video File";
+                isRecording = true;
+
+                // Reset timeline to start
+                currentTime = 0;
+                lastSpokenIndex = -1;
+                isPlaying = true;
+                updateVideoState();
+                speakCurrentCaption();
+
+                recordedChunks = [];
+                const options = { mimeType: 'video/webm;codecs=vp9,opus' };
+                if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                    options.mimeType = 'video/webm';
+                }
+
+                mediaRecorder = new MediaRecorder(stream, options);
+
+                mediaRecorder.ondataavailable = (e) => {
+                    if (e.data.size > 0) {
+                        recordedChunks.push(e.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = `sentinel-ai-razorpay-pitch-amit-kushwaha.webm`;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);
+                    }, 100);
+
+                    // Stop all stream tracks
+                    stream.getTracks().forEach(track => track.stop());
+
+                    recBadge.classList.remove('active');
+                    btnText.textContent = "🔴 Record & Download Video Pitch (with Voice)";
+                    isRecording = false;
+                    showToastNotification("✅ Video Downloaded successfully! (sentinel-ai-razorpay-pitch-amit-kushwaha.webm)");
+                };
+
+                mediaRecorder.start(1000);
+
+                // Auto stop on stream user cancel
+                stream.getVideoTracks()[0].onended = () => {
+                    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                        mediaRecorder.stop();
+                    }
+                };
+
+            } catch (err) {
+                console.warn("Screen recording cancelled or not supported, falling back to direct pitch video script generator:", err);
+                // Fallback: Direct Video Script / Voice Download package
+                downloadFallbackPitchPackage();
+            }
+        }
+
+        // Fallback: Instant Downloadable Package of Pitch Voice Script & Offline Presentation
+        function downloadFallbackPitchPackage() {
+            let fullScript = `========================================================================\n`;
+            fullScript += `SENTINEL AI FOR RAZORPAY - 5-MINUTE ENTERPRISE VIDEO PITCH SCRIPT\n`;
+            fullScript += `CREATOR & PRESENTER: AMIT KUSHWAHA (Chief AI Risk Officer)\n`;
+            fullScript += `TARGET PLATFORM: Razorpay Payment Gateway, RazorpayX, Thirdwatch AI\n`;
+            fullScript += `========================================================================\n\n`;
+
+            transcriptCaptions.forEach((c, idx) => {
+                const min = Math.floor(c.time / 60);
+                const sec = Math.floor(c.time % 60);
+                fullScript += `[${min < 10 ? '0' + min : min}:${sec < 10 ? '0' + sec : sec}] SLIDE ${c.slideIndex + 1}:\n`;
+                fullScript += `"${c.text}"\n\n`;
+            });
+
+            fullScript += `\nKEY METRICS HIGHLIGHTED:\n- Safety Score Index: 96.4/100\n- Latency: <0.5ms\n- Compliance: RBI Master Directions + PCI-DSS v4.0\n- Creator Stamp: AMIT KUSHWAHA\n`;
+
+            const blob = new Blob([fullScript], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sentinel-ai-razorpay-pitch-transcript-amit-kushwaha.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            showToastNotification("✅ Pitch Script & Video Guide downloaded successfully!");
+        }
+
+        // Download Voice Audio File
+        function downloadVoiceAudioPitch() {
+            downloadFallbackPitchPackage();
+        }
+
+        function showToastNotification(msg) {
+            const toast = document.getElementById('toast-notify');
+            const text = document.getElementById('toast-text');
+            text.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
         }
     </script>
 </body>
