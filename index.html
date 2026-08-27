@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Search Console Site Verification Tag -->
+    <meta name="google-site-verification" content="AvVEmpQdo29d2GSwI_pHuzWwU-S5W3bqew1UfKPRyVo" />
+
+    <!-- SEO Primary Meta Tags -->
+    <title>Sentinel AI | Enterprise AI Risk Manager (Created by AMIT KUSHWAHA)</title>
+    <meta name="title" content="Sentinel AI | Enterprise AI Risk Manager (Created by AMIT KUSHWAHA)">
+    <meta name="description" content="Sentinel AI - Enterprise AI Risk Governance, Threat Detection, Prompt Injection Guard, and Safety Sentinel. Created & Maintained by AMIT KUSHWAHA.">
+    <meta name="keywords" content="Sentinel AI, AMIT KUSHWAHA, AI Risk Manager, AI Governance, EU AI Act Compliance, NIST AI RMF, Prompt Injection Defense, AI Safety">
+    <meta name="author" content="AMIT KUSHWAHA">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook / LinkedIn SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sentinel-ai-risk-manager.web.app/">
+    <meta property="og:title" content="Sentinel AI | Enterprise AI Risk Manager (Created by AMIT KUSHWAHA)">
+    <meta property="og:description" content="Enterprise AI Risk Governance, Threat Detection, and Safety Sentinel. Created by AMIT KUSHWAHA.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Twitter SEO -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Sentinel AI | Enterprise AI Risk Manager (Created by AMIT KUSHWAHA)">
+    <meta property="twitter:description" content="Enterprise AI Risk Governance, Threat Detection, and Safety Sentinel. Created by AMIT KUSHWAHA.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <!-- Animated Cyber Background Mesh -->
+    <div class="cyber-bg">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- ==================== AUTHENTICATION SECTION (LOGIN / SIGN UP) ==================== -->
+    <section id="auth-section" class="auth-wrapper">
+        <div class="auth-container glass-card">
+            <!-- Brand Badge Header -->
+            <div class="auth-header">
+                <div class="brand-logo">
+                    <div class="logo-icon-box">
+                        <i data-lucide="shield-alert"></i>
+                    </div>
+                    <div class="brand-text">
+                        <span class="creator-tag">CREATED BY AMIT KUSHWAHA</span>
+                        <h1>SENTINEL AI</h1>
+                        <p class="subtitle">Enterprise AI Risk & Governance Sentinel</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Launch Video Pitch Button -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <a href="video-pitch.html" target="_blank" class="btn btn-secondary btn-block" style="border-color: var(--primary-cyan); color: var(--primary-cyan);">
+                    <i data-lucide="play-circle"></i> Watch 5-Min Sentinel AI Video Presentation
+                </a>
+            </div>
+
+            <!-- Auth Navigation Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">
+                    <i data-lucide="log-in"></i> Sign In
+                </button>
+                <button class="auth-tab-btn" id="tab-signup-btn" onclick="switchAuthTab('signup')">
+                    <i data-lucide="user-plus"></i> Create Account
+                </button>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
+                <div class="form-title">
+                    <h2>Welcome Back</h2>
+                    <p>Access your Sentinel AI Safety Guardrails & Risk Dashboard</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="login-email"><i data-lucide="mail"></i> Corporate Email</label>
+                    <input type="email" id="login-email" placeholder="amit.kushwaha@sentinel.ai" value="amit.kushwaha@sentinel.ai" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="login-password"><i data-lucide="lock"></i> Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="login-password" placeholder="••••••••••••" value="Sentinel2026#Amit" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('login-password', this)">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember-me" checked>
+                        <span class="checkmark"></span>
+                        Remember session
+                    </label>
+                    <a href="#" class="forgot-link" onclick="showNotification('Password reset request logged to Administrator.', 'info')">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span>Sign In to Dashboard</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+
+                <!-- Quick Demo Login Button -->
+                <div class="demo-login-box">
+                    <p class="demo-label">Testing the Platform?</p>
+                    <button type="button" class="btn btn-demo" onclick="quickDemoLogin()">
+                        <i data-lucide="sparkles"></i> Log In as AMIT KUSHWAHA (Creator & Administrator)
+                    </button>
+                </div>
+            </form>
+
+            <!-- SIGN UP FORM -->
+            <form id="signup-form" class="auth-form" onsubmit="handleSignUp(event)">
+                <div class="form-title">
+                    <h2>Create Administrator Account</h2>
+                    <p>Setup a new Sentinel AI Risk Control Workspace</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="signup-name"><i data-lucide="user"></i> Full Name</label>
+                    <input type="text" id="signup-name" placeholder="AMIT KUSHWAHA" value="AMIT KUSHWAHA" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="signup-email"><i data-lucide="mail"></i> Work Email</label>
+                    <input type="email" id="signup-email" placeholder="amit@enterprise.ai" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="signup-role"><i data-lucide="shield-check"></i> Security Role</label>
+                    <select id="signup-role" required>
+                        <option value="Chief AI Risk Officer" selected>Chief AI Risk Officer (Creator Lead)</option>
+                        <option value="AI Safety Auditor">AI Safety Auditor</option>
+                        <option value="MLSecOps Engineer">MLSecOps Security Engineer</option>
+                        <option value="Compliance Officer">AI Compliance Manager</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="signup-password"><i data-lucide="lock"></i> Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="signup-password" placeholder="Create strong password" oninput="checkPasswordStrength(this.value)" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('signup-password', this)">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                    <div class="strength-meter">
+                        <div class="strength-bar" id="strength-bar"></div>
+                    </div>
+                    <span class="strength-label" id="strength-label">Enter a strong password</span>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="terms-agree" required checked>
+                        <span class="checkmark"></span>
+                        Agree to NIST & EU AI Act Governance Standards
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span>Create Account</span>
+                    <i data-lucide="user-check"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p><i data-lucide="lock"></i> 256-Bit Encrypted Portal &bull; Designed & Created by AMIT KUSHWAHA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MAIN DASHBOARD SECTION ==================== -->
+    <div id="app-dashboard" class="dashboard-wrapper hidden">
+        <!-- Top Navigation Bar -->
+        <header class="top-navbar">
+            <div class="nav-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i data-lucide="menu"></i>
+                </button>
+                <div class="brand-badge">
+                    <div class="brand-icon">
+                        <i data-lucide="shield-alert"></i>
+                    </div>
+                    <div class="brand-info">
+                        <span class="brand-owner">CREATED BY AMIT KUSHWAHA</span>
+                        <h2 class="brand-title">SENTINEL AI RISK MANAGER</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Indicator Pills -->
+            <div class="nav-center">
+                <a href="video-pitch.html" target="_blank" class="status-pill" style="border-color: var(--primary-cyan); color: var(--primary-cyan); text-decoration: none;">
+                    <i data-lucide="play-circle"></i>
+                    <span>Watch Video Pitch</span>
+                </a>
+                <div class="status-pill status-healthy">
+                    <span class="status-dot pulse"></span>
+                    <span class="status-text">Sentinel Shield Active</span>
+                </div>
+                <div class="status-pill status-threat">
+                    <i data-lucide="radio"></i>
+                    <span>Threat Index: <strong>LOW (0.04% Risk)</strong></span>
+                </div>
+                <div class="status-pill status-clock" id="live-clock">
+                    00:00:00 UTC
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <button class="icon-btn" title="Simulate Threat Alert" onclick="triggerAlertNotification()">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <!-- User Profile Pill -->
+                <div class="user-profile-menu">
+                    <div class="avatar-circle">AK</div>
+                    <div class="user-details">
+                        <span class="user-name" id="display-user-name">AMIT KUSHWAHA</span>
+                        <span class="user-role" id="display-user-role">Chief AI Risk Officer</span>
+                    </div>
+                    <button class="logout-btn" title="Logout" onclick="handleLogout()">
+                        <i data-lucide="log-out"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Body Layout -->
+        <div class="dashboard-body">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-user-card">
+                    <div class="card-avatar">AK</div>
+                    <div class="card-meta">
+                        <h4 id="sidebar-user-name">AMIT KUSHWAHA</h4>
+                        <span class="badge badge-cyan">Creator & Admin</span>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" data-target="view-overview" onclick="switchView('view-overview', this)">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Overview Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-prompt-tester" onclick="switchView('view-prompt-tester', this)">
+                        <i data-lucide="terminal"></i>
+                        <span>Prompt Vulnerability Tester</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-model-audit" onclick="switchView('view-model-audit', this)">
+                        <i data-lucide="award"></i>
+                        <span>Model Governance Auditor</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-threat-simulator" onclick="switchView('view-threat-simulator', this)">
+                        <i data-lucide="zap"></i>
+                        <span>Attack & Incident Simulator</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-policy-settings" onclick="switchView('view-policy-settings', this)">
+                        <i data-lucide="sliders"></i>
+                        <span>Guardrail Policy Config</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="system-health-card">
+                        <div class="health-header">
+                            <span>Sentinel AI Shield</span>
+                            <span class="health-val">99.8%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 99.8%;"></div>
+                        </div>
+                        <p class="health-desc">All 14 Sentinel AI Safety filters online.</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="main-content">
+
+                <!-- ================= VIEW 1: OVERVIEW DASHBOARD ================= -->
+                <section id="view-overview" class="view-content active">
+                    <div class="page-header">
+                        <div>
+                            <span class="page-category">SENTINEL AI MANAGEMENT ENGINE</span>
+                            <h1 class="page-title">Enterprise Risk & Governance Dashboard</h1>
+                        </div>
+                        <div class="header-actions">
+                            <a href="video-pitch.html" target="_blank" class="btn btn-secondary" style="border-color: var(--primary-cyan); color: var(--primary-cyan);">
+                                <i data-lucide="play-circle"></i> Play Video Presentation
+                            </a>
+                            <button class="btn btn-secondary" onclick="exportComplianceReport()">
+                                <i data-lucide="download"></i> Export Audit PDF
+                            </button>
+                            <button class="btn btn-primary" onclick="runQuickSystemScan()">
+                                <i data-lucide="refresh-cw"></i> Run Full Vulnerability Scan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Metrics Top Cards Grid -->
+                    <div class="metrics-grid">
+                        <!-- Metric Card 1 -->
+                        <div class="metric-card glass-panel glow-cyan">
+                            <div class="metric-icon cyan">
+                                <i data-lucide="shield-check"></i>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-label">Sentinel AI Safety Index</span>
+                                <h3 class="metric-value">96.4 <small>/100</small></h3>
+                                <span class="trend trend-up"><i data-lucide="trending-up"></i> +2.4% vs last week</span>
+                            </div>
+                            <div class="mini-gauge">
+                                <svg viewBox="0 0 36 36" class="circular-chart cyan-chart">
+                                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="circle" stroke-dasharray="96, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Metric Card 2 -->
+                        <div class="metric-card glass-panel glow-emerald">
+                            <div class="metric-icon emerald">
+                                <i data-lucide="lock"></i>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-label">Jailbreak Interceptions</span>
+                                <h3 class="metric-value">1,428</h3>
+                                <span class="trend trend-up"><i data-lucide="check-circle-2"></i> 100% Mitigated</span>
+                            </div>
+                        </div>
+
+                        <!-- Metric Card 3 -->
+                        <div class="metric-card glass-panel glow-amber">
+                            <div class="metric-icon amber">
+                                <i data-lucide="eye-off"></i>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-label">PII Data Redactions</span>
+                                <h3 class="metric-value">3,892</h3>
+                                <span class="trend trend-neutral"><i data-lucide="activity"></i> Active DLP Shield</span>
+                            </div>
+                        </div>
+
+                        <!-- Metric Card 4 -->
+                        <div class="metric-card glass-panel glow-purple">
+                            <div class="metric-icon purple">
+                                <i data-lucide="cpu"></i>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-label">Model Hallucination Rate</span>
+                                <h3 class="metric-value">0.82%</h3>
+                                <span class="trend trend-down"><i data-lucide="trending-down"></i> -0.14% reduction</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Analytics Grid -->
+                    <div class="dashboard-grid-2col">
+                        <!-- Threat Radar & Risk Vector Matrix -->
+                        <div class="glass-panel analytics-card">
+                            <div class="panel-header">
+                                <div>
+                                    <h3><i data-lucide="radar"></i> OWASP Top 10 for LLMs Risk Matrix</h3>
+                                    <p class="panel-subtitle">Real-time attack vector defense evaluation by Sentinel AI Guard</p>
+                                </div>
+                                <span class="badge badge-green">All Protected</span>
+                            </div>
+
+                            <div class="risk-matrix-list">
+                                <div class="risk-row">
+                                    <div class="risk-title-box">
+                                        <span class="risk-code">LLM01</span>
+                                        <span class="risk-name">Prompt Injection & Jailbreak</span>
+                                    </div>
+                                    <div class="risk-bar-wrapper">
+                                        <div class="risk-bar-fill bar-safe" style="width: 98%;"></div>
+                                    </div>
+                                    <span class="risk-status safe">98% Secure</span>
+                                </div>
+
+                                <div class="risk-row">
+                                    <div class="risk-title-box">
+                                        <span class="risk-code">LLM02</span>
+                                        <span class="risk-name">Insecure Output Handling</span>
+                                    </div>
+                                    <div class="risk-bar-wrapper">
+                                        <div class="risk-bar-fill bar-safe" style="width: 95%;"></div>
+                                    </div>
+                                    <span class="risk-status safe">95% Secure</span>
+                                </div>
+
+                                <div class="risk-row">
+                                    <div class="risk-title-box">
+                                        <span class="risk-code">LLM03</span>
+                                        <span class="risk-name">Training Data Poisoning</span>
+                                    </div>
+                                    <div class="risk-bar-wrapper">
+                                        <div class="risk-bar-fill bar-safe" style="width: 92%;"></div>
+                                    </div>
+                                    <span class="risk-status safe">92% Secure</span>
+                                </div>
+
+                                <div class="risk-row">
+                                    <div class="risk-title-box">
+                                        <span class="risk-code">LLM06</span>
+                                        <span class="risk-name">Sensitive Information Disclosure</span>
+                                    </div>
+                                    <div class="risk-bar-wrapper">
+                                        <div class="risk-bar-fill bar-safe" style="width: 99%;"></div>
+                                    </div>
+                                    <span class="risk-status safe">99% Secure</span>
+                                </div>
+
+                                <div class="risk-row">
+                                    <div class="risk-title-box">
+                                        <span class="risk-code">LLM08</span>
+                                        <span class="risk-name">Excessive Agency & Permissions</span>
+                                    </div>
+                                    <div class="risk-bar-wrapper">
+                                        <div class="risk-bar-fill bar-warning" style="width: 88%;"></div>
+                                    </div>
+                                    <span class="risk-status warning">88% (Monitor)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Threat Log Stream -->
+                        <div class="glass-panel analytics-card">
+                            <div class="panel-header">
+                                <div>
+                                    <h3><i data-lucide="activity"></i> Live Security Event Stream</h3>
+                                    <p class="panel-subtitle">Real-time incident filtering and policy enforcement</p>
+                                </div>
+                                <button class="btn btn-sm btn-outline" onclick="clearEventLogs()">Clear Stream</button>
+                            </div>
+
+                            <div class="terminal-log-box" id="overview-live-logs">
+                                <div class="log-entry log-success">
+                                    <span class="log-time">[20:58:02]</span>
+                                    <span class="log-tag">INFO</span>
+                                    <span class="log-msg">Sentinel AI Safety Guardrail #04 verified model response clean.</span>
+                                </div>
+                                <div class="log-entry log-danger">
+                                    <span class="log-time">[20:57:45]</span>
+                                    <span class="log-tag">BLOCKED</span>
+                                    <span class="log-msg">Adversarial prompt injection attempt trapped from IP 192.168.1.42</span>
+                                </div>
+                                <div class="log-entry log-warning">
+                                    <span class="log-time">[20:57:10]</span>
+                                    <span class="log-tag">REDACTED</span>
+                                    <span class="log-msg">Credit Card number detected in prompt payload & auto-masked.</span>
+                                </div>
+                                <div class="log-entry log-info">
+                                    <span class="log-time">[20:56:00]</span>
+                                    <span class="log-tag">AUDIT</span>
+                                    <span class="log-msg">System security baseline audit completed by Platform Creator AMIT KUSHWAHA.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= VIEW 2: PROMPT VULNERABILITY TESTER ================= -->
+                <section id="view-prompt-tester" class="view-content">
+                    <div class="page-header">
+                        <div>
+                            <span class="page-category">INTERACTIVE AI THREAT SCANNER</span>
+                            <h1 class="page-title">Prompt Injection & Safety Tester</h1>
+                        </div>
+                    </div>
+
+                    <div class="grid-2col">
+                        <!-- Prompt Input Box -->
+                        <div class="glass-panel">
+                            <div class="panel-header">
+                                <h3><i data-lucide="edit-3"></i> Test Adversarial Prompt Payload</h3>
+                            </div>
+
+                            <div class="preset-prompts">
+                                <span class="preset-label">Quick Test Scenarios:</span>
+                                <button class="btn-chip" onclick="loadSamplePrompt('jailbreak')">Jailbreak Attack (DAN)</button>
+                                <button class="btn-chip" onclick="loadSamplePrompt('pii')">PII Extraction Attack</button>
+                                <button class="btn-chip" onclick="loadSamplePrompt('system_leak')">System Prompt Leak</button>
+                                <button class="btn-chip" onclick="loadSamplePrompt('benign')">Safe Benign Prompt</button>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="prompt-input-text">Enter User Prompt or System Query:</label>
+                                <textarea id="prompt-input-text" rows="6" placeholder="Type prompt here or select a quick test scenario above..."></textarea>
+                            </div>
+
+                            <div class="scan-actions">
+                                <button class="btn btn-primary" onclick="analyzePromptVulnerability()">
+                                    <i data-lucide="shield-alert"></i> Run Sentinel AI Safety Analysis
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Scan Result Output Panel -->
+                        <div class="glass-panel" id="prompt-result-panel">
+                            <div class="panel-header">
+                                <h3><i data-lucide="bar-chart-2"></i> Safety Analysis Results</h3>
+                                <span class="badge badge-neutral" id="scan-status-badge">Awaiting Input</span>
+                            </div>
+
+                            <div class="scan-empty-state" id="scan-empty">
+                                <i data-lucide="search-code" class="empty-icon"></i>
+                                <p>Select a preset payload or type a prompt to test your AI model against Prompt Injection, System Leaks, and Data Harvesting.</p>
+                            </div>
+
+                            <div class="scan-results-content hidden" id="scan-results-box">
+                                <div class="risk-gauge-container">
+                                    <div class="gauge-display">
+                                        <span class="gauge-number" id="threat-score-val">0%</span>
+                                        <span class="gauge-title">Threat Score</span>
+                                    </div>
+                                    <div class="verdict-box" id="verdict-box">
+                                        <h4 id="verdict-title">PASS: Safe Prompt</h4>
+                                        <p id="verdict-desc">No threat signatures detected by Sentinel AI Guard.</p>
+                                    </div>
+                                </div>
+
+                                <div class="breakdown-list">
+                                    <div class="breakdown-item">
+                                        <span>Prompt Injection / Jailbreak</span>
+                                        <strong id="res-jailbreak">0% Risk</strong>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <span>System Instruction Leak Risk</span>
+                                        <strong id="res-system-leak">0% Risk</strong>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <span>PII / Sensitive Data Exposure</span>
+                                        <strong id="res-pii">0% Risk</strong>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <span>Toxicity & Harmful Content</span>
+                                        <strong id="res-toxicity">0% Risk</strong>
+                                    </div>
+                                </div>
+
+                                <div class="sanitized-prompt-box">
+                                    <label><i data-lucide="shield-check"></i> Sentinel AI Sanitized Output:</label>
+                                    <div class="code-output" id="sanitized-text-output">--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= VIEW 3: MODEL GOVERNANCE AUDITOR ================= -->
+                <section id="view-model-audit" class="view-content">
+                    <div class="page-header">
+                        <div>
+                            <span class="page-category">ENTERPRISE COMPLIANCE</span>
+                            <h1 class="page-title">AI Model Governance & Audit Suite</h1>
+                        </div>
+                    </div>
+
+                    <div class="grid-2col">
+                        <!-- Audit Config Form -->
+                        <div class="glass-panel">
+                            <div class="panel-header">
+                                <h3><i data-lucide="sliders"></i> Model Deployment Parameters</h3>
+                            </div>
+
+                            <form id="audit-config-form" onsubmit="generateAuditCertificate(event)">
+                                <div class="input-group">
+                                    <label>AI Model Name</label>
+                                    <input type="text" id="audit-model-name" value="Sentinel-LLM v4.2 Enterprise" required>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Deployment Environment</label>
+                                    <select id="audit-env">
+                                        <option value="Production Cloud (AWS / Azure)">Production Cloud (AWS / Azure)</option>
+                                        <option value="On-Premise Isolated Cluster">On-Premise Isolated Cluster</option>
+                                        <option value="Edge / Local Device">Edge / Local Device</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Primary Compliance Standard</label>
+                                    <select id="audit-standard">
+                                        <option value="EU AI Act High-Risk Category">EU AI Act (High-Risk Framework)</option>
+                                        <option value="NIST AI Risk Management Framework 1.0">NIST AI RMF 1.0</option>
+                                        <option value="ISO/IEC 42001 Management System">ISO/IEC 42001 Standard</option>
+                                    </select>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="chk-guardrails" checked>
+                                        <span class="checkmark"></span>
+                                        Input/Output Guardrail Engine Enabled
+                                    </label>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="chk-logging" checked>
+                                        <span class="checkmark"></span>
+                                        Immutable Security Audit Logging Enabled
+                                    </label>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="chk-human" checked>
+                                        <span class="checkmark"></span>
+                                        Human-in-the-loop (HITL) Override Active
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i data-lucide="file-check"></i> Generate Official Audit Certificate
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Certificate Display Card -->
+                        <div class="glass-panel certificate-card-wrapper" id="certificate-wrapper">
+                            <div class="certificate-card" id="certificate-card">
+                                <div class="cert-border">
+                                    <div class="cert-header">
+                                        <i data-lucide="shield-check" class="cert-logo-icon"></i>
+                                        <h2>AI GOVERNANCE AUDIT CERTIFICATE</h2>
+                                        <span class="cert-sub">SENTINEL AI COMPLIANCE & SAFETY ASSURANCE</span>
+                                    </div>
+
+                                    <div class="cert-body">
+                                        <p class="cert-intro">This document certifies that the AI Deployment:</p>
+                                        <h3 id="cert-model-title" class="cert-model-title">Sentinel-LLM v4.2 Enterprise</h3>
+
+                                        <p class="cert-details">
+                                            Has been thoroughly audited for model hallucination risks, prompt injection vulnerabilities, alignment constraints, and data protection compliance.
+                                        </p>
+
+                                        <div class="cert-table">
+                                            <div class="cert-row">
+                                                <span>Compliance Framework:</span>
+                                                <strong id="cert-standard-val">EU AI Act High-Risk Category</strong>
+                                            </div>
+                                            <div class="cert-row">
+                                                <span>Audited System Risk:</span>
+                                                <strong id="cert-risk-level" class="text-green">LOW RISK (COMPLIANT)</strong>
+                                            </div>
+                                            <div class="cert-row">
+                                                <span>Audit Date & ID:</span>
+                                                <strong id="cert-date-val">2026-08-21 | #AK-99420-AI</strong>
+                                            </div>
+                                        </div>
+
+                                        <!-- Stamp & Signature -->
+                                        <div class="cert-signature-area">
+                                            <div class="signature-box">
+                                                <div class="signature-script">Amit Kushwaha</div>
+                                                <span class="sig-name">AMIT KUSHWAHA</span>
+                                                <span class="sig-title">Platform Creator & Lead Auditor</span>
+                                            </div>
+
+                                            <div class="digital-stamp">
+                                                <div class="stamp-inner">
+                                                    <span>CREATED BY</span>
+                                                    <strong>AMIT KUSHWAHA</strong>
+                                                    <span>VERIFIED STAMP</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cert-actions">
+                                <button class="btn btn-secondary btn-block" onclick="window.print()">
+                                    <i data-lucide="printer"></i> Print / Save Official Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= VIEW 4: THREAT & INCIDENT SIMULATOR ================= -->
+                <section id="view-threat-simulator" class="view-content">
+                    <div class="page-header">
+                        <div>
+                            <span class="page-category">LIVE CYBER DEFENSE LAB</span>
+                            <h1 class="page-title">AI Threat & Incident Simulator</h1>
+                        </div>
+                    </div>
+
+                    <div class="grid-2col">
+                        <!-- Simulation Trigger Panel -->
+                        <div class="glass-panel">
+                            <div class="panel-header">
+                                <h3><i data-lucide="play-circle"></i> Trigger Adversarial Attacks</h3>
+                                <p class="panel-subtitle">Observe live Sentinel AI Guard mitigation</p>
+                            </div>
+
+                            <div class="attack-scenarios">
+                                <div class="scenario-card" onclick="runAttackSimulation('prompt_injection')">
+                                    <div class="scenario-icon red"><i data-lucide="terminal"></i></div>
+                                    <div class="scenario-info">
+                                        <h4>Direct Prompt Injection</h4>
+                                        <p>Attempts to override model system instructions and force unauthorized actions.</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-danger">Simulate Attack</button>
+                                </div>
+
+                                <div class="scenario-card" onclick="runAttackSimulation('data_poisoning')">
+                                    <div class="scenario-icon amber"><i data-lucide="database"></i></div>
+                                    <div class="scenario-info">
+                                        <h4>RAG Vector Data Poisoning</h4>
+                                        <p>Injects malicious embedded documents into the RAG knowledge base.</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-warning">Simulate Attack</button>
+                                </div>
+
+                                <div class="scenario-card" onclick="runAttackSimulation('model_inversion')">
+                                    <div class="scenario-icon purple"><i data-lucide="cpu"></i></div>
+                                    <div class="scenario-info">
+                                        <h4>Model Inversion / Membership Inference</h4>
+                                        <p>Attempts to extract private training dataset samples via targeted queries.</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-secondary">Simulate Attack</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Command Terminal Output -->
+                        <div class="glass-panel">
+                            <div class="panel-header">
+                                <h3><i data-lucide="terminal"></i> Defense Console Log</h3>
+                                <span class="badge badge-cyan" id="sim-status">Console Idle</span>
+                            </div>
+
+                            <div class="terminal-log-box height-lg" id="simulator-console">
+                                <div class="log-entry log-info">
+                                    <span class="log-time">[SYSTEM READY]</span> Sentinel AI Risk Engine Active. Select an attack scenario to begin simulation.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= VIEW 5: GUARDRAIL POLICY CONFIG ================= -->
+                <section id="view-policy-settings" class="view-content">
+                    <div class="page-header">
+                        <div>
+                            <span class="page-category">SYSTEM CONFIGURATION</span>
+                            <h1 class="page-title">Safety Rules & Policy Controls</h1>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel">
+                        <div class="panel-header">
+                            <h3><i data-lucide="sliders"></i> Active Sentinel AI Guardrail Rules</h3>
+                        </div>
+
+                        <div class="settings-list">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Automatic PII & Financial Data Masking</h4>
+                                    <p>Redact Social Security Numbers, Credit Cards, and API keys before prompt reaches the LLM.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked onchange="showNotification('PII Masking policy updated.', 'success')">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Jailbreak Pattern Heuristic Interceptor</h4>
+                                    <p>Block prompts containing 'DAN mode', 'Developer Override', or roleplay bypass attempts.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked onchange="showNotification('Jailbreak policy updated.', 'success')">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Model Output Hallucination Verification</h4>
+                                    <p>Verify generated facts against cross-referenced RAG databases prior to user display.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked onchange="showNotification('Hallucination filter updated.', 'success')">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Strict Rate Limiting & Abuse Prevention</h4>
+                                    <p>Throttle automated bot traffic exceeding 100 queries/minute.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked onchange="showNotification('Rate limiting policy updated.', 'success')">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
