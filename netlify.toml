@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Path = ["!*.css", "!*.js", "!*.html", "!*.png", "!*.jpg", "!*.svg", "!*.json"]}
